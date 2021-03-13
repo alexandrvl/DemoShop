@@ -1,0 +1,6 @@
+.*
+bin
+build
+local-env
+README.md
+gradlew.bat

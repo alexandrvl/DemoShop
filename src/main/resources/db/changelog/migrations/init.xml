@@ -1,0 +1,15 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet id="00000000000000" author="alex" dbms="postgresql">
+        <createSequence sequenceName="hibernate_sequence" startValue="1" incrementBy="1" cacheSize="20"/>
+    </changeSet>
+    <changeSet id="00000000000001" author="alex">
+        <createTable tableName="revinfo">
+            <column name="rev" type="integer" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="revtstmp" type="bigint"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,74 @@
+server:
+  port: 8080
+  shutdown: graceful
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - metrics
+  health:
+    diskspace.enabled: false
+
+logging:
+  level:
+    root: INFO
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  application:
+    name: demo-shop
+  session:
+    store-type: none
+  datasource:
+    url: jdbc:postgresql://localhost/demo_shop
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      maximum-pool-size: 25
+      maxLifeTime: 600000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: false
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+  jpa:
+    open-in-view: false
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc.time_zone: UTC
+        id.new_generator_mappings: true
+        connection.provider_disables_autocommit: true
+        cache.use_second_level_cache: false
+        cache.use_query_cache: false
+        generate_statistics: false
+        jdbc.batch_size: 25
+        order_inserts: true
+        order_updates: true
+        query.fail_on_pagination_over_collection_fetch: true
+        query.in_clause_parameter_padding: true
+        temp:
+          use_jdbc_metadata_defaults: false
+        lob:
+          non_contextual_creation: true
+  jmx:
+    enabled: false

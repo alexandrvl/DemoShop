@@ -11,6 +11,8 @@
 
 === Example of request for items in store
 
+* By default only 2 groups: *bake*, *second hand*
+
 ****
 === Request
 
@@ -33,5 +35,20 @@ include::{snippets}/api/v1/item/create/curl-request.adoc[]
 === Response
 
 include::{snippets}/api/v1/item/create/http-response.adoc[]
+
+****
+
+== Order requests
+
+=== Example of order process
+
+****
+=== Request
+
+include::{snippets}/api/v1/order/create/curl-request.adoc[]
+
+=== Response
+
+include::{snippets}/api/v1/order/create/http-response.adoc[]
 
 ****

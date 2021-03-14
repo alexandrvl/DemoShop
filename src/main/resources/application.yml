@@ -72,3 +72,9 @@ spring:
           non_contextual_creation: true
   jmx:
     enabled: false
+
+demo:
+  job:
+    enabled: true
+    path: some path
+    schedule: "0 0 7 * * ?"

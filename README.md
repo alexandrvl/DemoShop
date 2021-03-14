@@ -1,4 +1,4 @@
-# DemoShop
+# DemoShop with dummy logic (Spring Boot project structure demo). 
 
 ## Build docker image and run application inside docker
 
@@ -16,3 +16,4 @@
 * run `docker-compose up -d postgres`
 * connect to the database `jdbc:postgresql://localhost:5432/demo_shop` using password `postgres` and user `postgres`
 * to stop db run `docker-compose down`
+

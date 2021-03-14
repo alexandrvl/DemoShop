@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "demo.job.enabled",
+      "type": "java.lang.String",
+      "description": "Enable or disable demo job."
+    },
+    {
+      "name": "demo.job.path",
+      "type": "java.lang.String",
+      "description": "Some job config."
+    },
+    {
+      "name": "demo.job.schedule",
+      "type": "java.lang.String",
+      "description": "Cron jon schedule."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import static com.example.demo.TestTag.INTEGRATION;
+import static com.example.demo.common.TestTag.INTEGRATION;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;

@@ -70,18 +70,18 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'org.mockito:mockito-core'
     testImplementation 'org.testcontainers:testcontainers:1.15.2'
     testImplementation 'org.testcontainers:junit-jupiter:1.15.2'
     testImplementation 'org.testcontainers:mockserver:1.15.2'
     testImplementation 'org.testcontainers:postgresql:1.15.2'
     testImplementation 'org.mock-server:mockserver-client-java:5.11.2'
-
 }
 
 test {
     useJUnitPlatform() {
-        excludeTags 'integration', 'restdocs'
+        excludeTags 'integration'
     }
 }
 
@@ -94,15 +94,15 @@ task restdocsTest(type: Test) {
 }
 
 asciidoctor {
+    dependsOn(test)
     sourceDir 'src/main/asciidoc'
     attributes \
-		'snippets': file('target/snippets')
-    outputs.upToDateWhen { false }
+		'snippets': file('build/generated-snippets')
 }
 
 bootJar {
     dependsOn(asciidoctor)
-    from(asciidoctor.outputDir) {
+    from ("${asciidoctor.outputDir}") {
         into 'static/docs'
     }
 }

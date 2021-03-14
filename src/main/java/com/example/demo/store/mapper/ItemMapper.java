@@ -15,7 +15,6 @@ public interface ItemMapper {
     ItemDto from(Item item);
 
     @Mapping(target = "itemGroup", ignore = true)
-    @Mapping(target = "version", ignore = true)
     Item to(ItemDto to);
 
 }

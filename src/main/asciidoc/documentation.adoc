@@ -1,0 +1,37 @@
+= Demo shop application
+:doctype: book
+:icons: font
+:source-highlighter: prettify
+:toc: left
+:toclevels: 2
+:sectlinks:
+:note-caption: :bulb:
+
+== Store requests
+
+=== Example of request for items in store
+
+****
+=== Request
+
+include::{snippets}/api/v1/item/item-group/path-parameters.adoc[]
+include::{snippets}/api/v1/item/item-group/curl-request.adoc[]
+
+=== Response
+
+include::{snippets}/api/v1/item/item-group/http-response.adoc[]
+
+****
+
+=== Example of request to create new item in store
+
+****
+=== Request
+
+include::{snippets}/api/v1/item/create/curl-request.adoc[]
+
+=== Response
+
+include::{snippets}/api/v1/item/create/http-response.adoc[]
+
+****

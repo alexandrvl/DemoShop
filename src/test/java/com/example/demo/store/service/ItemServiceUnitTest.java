@@ -6,6 +6,8 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
+
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +21,7 @@ import com.example.demo.common.error.DemoBusinessException;
 import com.example.demo.store.mapper.ItemMapper;
 import com.example.demo.store.model.domain.Item;
 import com.example.demo.store.model.domain.ItemGroup;
+import com.example.demo.store.model.dto.ItemDto;
 import com.example.demo.store.repository.ItemGroupRepository;
 import com.example.demo.store.repository.ItemRepository;
 
@@ -86,6 +89,38 @@ public class ItemServiceUnitTest {
         when(itemRepository.getAndLockOneById(itemId)).thenReturn(item);
         Throwable exception = assertThrows(DemoBusinessException.class, () -> testable.updateItemCount(itemId, count));
         MatcherAssert.assertThat(exception.getMessage(), is(errorMessage));
+    }
+
+    @Test
+    public void shouldCreateItem() {
+        var itemGroupName = "item group";
+        var itemId = 1L;
+        var itemName = "item name";
+        var itemDto = new ItemDto().setId(itemId).setName(itemName).setItemGroupName(itemGroupName);
+        var itemGroup = new ItemGroup().setName(itemGroupName);
+        var itemEntity = new Item().setId(1L).setName(itemName).setItemGroup(itemGroup);
+        when(itemGroupRepository.findOneByName(itemGroupName)).thenReturn(Optional.of(itemGroup));
+        when(itemRepository.save(itemEntity)).thenReturn(itemEntity);
+        var result = testable.createItem(itemDto);
+        assertThat(result.getItemGroupName()).isEqualTo(itemGroupName);
+        assertThat(result.getId()).isEqualTo(itemId);
+        assertThat(result.getName()).isEqualTo(itemName);
+    }
+
+    @Test
+    public void shouldCreateItems() {
+        var itemGroupName = "item group";
+        var itemId = 1L;
+        var itemName = "item name";
+        var itemDto = new ItemDto().setId(itemId).setName(itemName).setItemGroupName(itemGroupName);
+        var itemGroup = new ItemGroup().setName(itemGroupName);
+        var itemEntity = new Item().setId(1L).setName(itemName).setItemGroup(itemGroup);
+        when(itemGroupRepository.findOneByName(itemGroupName)).thenReturn(Optional.of(itemGroup));
+        when(itemRepository.save(itemEntity)).thenReturn(itemEntity);
+        var result = testable.createItems(singletonList(itemDto));
+        assertThat(result.get(0).getItemGroupName()).isEqualTo(itemGroupName);
+        assertThat(result.get(0).getId()).isEqualTo(itemId);
+        assertThat(result.get(0).getName()).isEqualTo(itemName);
     }
 
 }

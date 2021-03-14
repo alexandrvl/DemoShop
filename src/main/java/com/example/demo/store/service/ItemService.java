@@ -39,6 +39,20 @@ public class ItemService {
     }
 
     @Transactional
+    public List<ItemDto> createItems(List<ItemDto> items) {
+        return items.stream().map(this::createItem).collect(toList());
+    }
+
+    @Transactional
+    public ItemDto createItem(ItemDto item) {
+        var group = itemGroupRepository.findOneByName(item.getItemGroupName())
+                .orElseThrow(() -> new DemoBusinessException(String.format("Wrong group name %s", item.getItemGroupName())));
+        var itemEntity = mapper.to(item);
+        itemEntity.setItemGroup(group);
+        return mapper.from(itemRepository.save(itemEntity));
+    }
+
+    @Transactional
     public void updateItemCount(Long id, Integer count) {
         if (count <= 0) {
             throw new DemoBusinessException(String.format("Item count %d is wrong", count));

@@ -6,6 +6,7 @@
 * run `cd local-env`
 * run  `docker-compose up -d`
 * navigate to `localhost:8080/swagger-ui/index.html` to check swagger
+* navigate to `localhost:8080/docs/documentation.html` to check restdoc documentation 
 * to stop run `docker-compose down`
 
 

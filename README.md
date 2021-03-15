@@ -17,3 +17,9 @@
 * connect to the database `jdbc:postgresql://localhost:5432/demo_shop` using password `postgres` and user `postgres`
 * to stop db run `docker-compose down`
 
+## To start web ui part 
+* build independently ui part
+* run docker-compose with ui: `docker-compose -f docker-compose.yml -f docker-compose-web.yml up -d`
+* check ui on port 9000
+
+

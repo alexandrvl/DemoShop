@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  demo-shop-ui:
+    container_name: demo-shop-ui
+    image: demo-shop-ui
+    depends_on:
+      - demo-shop
+    links:
+      - demo-shop
+    environment:
+      UPSTREAM_URL: demo-shop:8080
+    ports:
+      - 9000:8090
